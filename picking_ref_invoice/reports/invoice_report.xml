@@ -1,0 +1,33 @@
+<odoo>
+    <template id="report_invoice_document_inherit_bl" inherit_id="account.report_invoice_document">
+        <xpath expr="//tbody" position="replace">
+            <tbody>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="last_bl" t-value="None"/>
+                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                        <t t-if="line.picking_names and line.picking_names != last_bl">
+                            <tr>
+                                <td colspan="6" style="font-weight: bold; padding-top: 10px;">
+                                    Bon livraison: <t t-esc="line.picking_names"/>
+                                    <t t-if="line.picking_date">
+                                        - Date: <t t-esc="env['ir.qweb.field.date'].value_to_html(line.picking_date, {'format': 'dd/MM/yyyy'})"/>
+                                    </t>
+                                </td>
+                            </tr>
+
+
+
+                            <t t-set="last_bl" t-value="line.picking_names"/>
+                        </t>
+                        <tr class="invoice_line">
+                            <td><span t-field="line.name"/></td>
+                            <td class="text-right"><span t-field="line.quantity"/></td>
+                            <td class="text-right"><span t-field="line.price_unit"/></td>
+                            <td class="text-right"><span t-field="line.price_subtotal"/></td>
+                        </tr>
+                    </t>
+                </t>
+            </tbody>
+        </xpath>
+    </template>
+</odoo>
