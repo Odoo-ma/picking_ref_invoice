@@ -1,5 +1,5 @@
 ===========================
-Nom de ton module (Titre)
+Reference des bons de livraison sur la facture
 ===========================
 
 Description
@@ -40,4 +40,4 @@ Contact
 
 Licence
 -------
-LGPL-3 (ou OPL-1 si tu veux le rendre payant)
+LGPL-3
